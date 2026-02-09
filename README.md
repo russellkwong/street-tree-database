@@ -22,8 +22,8 @@ Software to view and manipulate a large csv file (>700 MB):
 ### Dataset
 
 The dataset is available on Box along with all supporting files.  
-[R4LIST (on Box)](https://cornell.app.box.com/file/2129327461712) ~700MB 
-[R4LIST_sample (on Box)](https://cornell.app.box.com/file/2129350917535) ~35MB
+[R4LIST (on Box)](https://cornell.app.box.com/file/2129327461712) ~700MB  
+[R4LIST_sample (on Box)](https://cornell.app.box.com/file/2129350917535) ~35MB  
 [Entire Box folder with supporting files](https://cornell.box.com/s/hlhkk8w3swc0m5bns19rerm2cx5859x9)
 
 ## Supporting files
