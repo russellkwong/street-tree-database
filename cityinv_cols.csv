@@ -1,0 +1,158 @@
+CITY,STATE,FILENAME,ANSI_PLACENS,SPP_BOT,SPP_COM,SPP_CODE,SPP_OTHER,GENUS,SPECIES,CULTIVAR,DBH_EXACT,DBH_CLASS,CIRC_EXACT,LONG_col,LAT_col,TREE_ID,HEIGHT_EXACT,HEIGHT_CLASS,STEMS,MULTI_STEMS,WIDTH,AGE,CONDITION,RISK,FAILURE,DATE_INV,DATE_UPDATE,DATE_PLANT,STATUS,CROWN1,CROWN2,CROWNAREA,notes
+Albany,New York,albany_ny.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,Tree_Size__DBH_,,,Longitude,Latitude,Site_ID,,,,Multi_Stem_Tree,,,,,,,,,,,,,
+Allentown,Pennsylvania,allentown_pa.csv,,TR_GENUS,TR_COMMON,,,,,,TR_DIA,,,x,y,TR_NUM,,,,,,,CONDITION,,,INPUT_DATE,,,,,,,LatLong Tools
+Amherst,New York,amherst_ny.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,,,,,,,,,,,,,,
+Ann Arbor,Michigan,annarbor_mi.csv,1625837,BOTANICAL,COMMONNAME,,COMMONGENU,BOTANICALG,,CULTIVAR,,DBH,,x,y,FACILITYID,,HEIGHT,,,,,,,,DBHDATE,,,,,,,LatLong Tools
+Arlington,Virginia,arlington_va.csv,,,CommonName,,,,,CultivarVariety,DBHIn,,,x,y,ID,HeightFt,,,,,,,,,EntryDate,cgLastModified,Installed,,CrownSpreadFt1,CrownSpreadFt2,,LatLong Tools
+Arlington,Massachusetts,arlington_ma.csv,,SPP_BOT_rep,CommonName,,,Genus,Species,Cultivar,DBH,,,x,y,OBJECTID,Height,,,,,,,,,,,PlantedDate,SpaceStatus,,,,LatLongTools
+Arlington Heights,Illinois,arlingtonheights_il.csv,,SPECIESSCIENTIFICNAME,SPECIESCOMMONNAME,,,GENUS,,CULTIVAR,DIAMETER,,,x,y,OBJECTID,,,,,,,,,,DATECREATED,DATEMODIFIED,PLANTINGDATE,,,,,LatLongTools
+Auburn,Indiana,auburn_in.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,LONGITUDE,LATITUDE,ID_rep,,,,MULTISTEM,,,COND,RATING,FAIL,,,,,,,,
+Baltimore,Maryland,baltimore_md.csv,,SPP,COMMON,,,GENUS,,CULTIVAR,DBH,,,X_COORD,Y_COORD,UniqueID,TREE_HT,,,,,,CONDITION,,,Inv_Date,,,,,,,
+Belmont,Massachusetts,belmont_ma.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,Tree_Height,,Multi_Stem,,,,,,,,,,,,,
+Berwyn,Illinois,berwyn_il.csv,,LATIN_NAME,SPP_COM_rep,,,,,VARIETY,DBH,,,X,Y,TREE_ID,,,STEMS,,,,CONDITION,RISK_LEVEL,,,,,,,,,
+Bethlehem,Pennsylvania,bethlehem_pa.csv,,BOTANICAL_NAME,COMMON_NAME,,,,,,EXACT_DBH,DBH,,x,y,OBJECTID,EXACT_HEIGHT,HEIGHT,,,,,,,,,,,,,,,LatLongTools
+Bexley,Ohio,bexley_oh.csv,,Botanical_Name,Common_Name,,,,,Cultivar_Name,Size,,,x,y,OBJECTID,,,,,,,Status,,,,,,,,,,LatLong Tools
+Binghamton,New York,binghamton_ny.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,Cultivar,Diameter,,,Longitude,Latitude,Site_ID,,Height,,MultiStem,,,,,,Inventory_Date,,,,,,,
+Bloomington,Illinois,bloomington_il.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,Multi_Stem,,,,,,,,,,,,,
+Boston,Massachusetts,boston_ma.csv,,spp_bot,spp_com,,,,,,dbh,dbh_range,,x_longitude,y_latitude,id,,,,,,,,,,,,,,,,,
+Brookline,Massachusetts,brookline_ma.csv,,sci_name,com_name,spec_code,,genus,species,,dbh,,,x,y,OBJECTID,,,,,,,condition,,,,last_insp,yr_planted,,,,,LatLongTools
+Buffalo,New York,buffalo_ny.csv,,Botanical Name,Common Name,,,,,,DBH,,,Longitude,Latitude,Site ID,,,,,,,,,,,,,,,,,
+Cabarrus County,North Carolina,cabarrus_nc.csv,,,NAME,,NAME_rep,,,,,DBH,,x,y,OBJECTID,,,,,,,CONDITION,RISKASSESSMENT,,,LASTUPDATE,INSTALLDATE,,,,,LatLong Tools
+Cambridge,Massachusetts,cambridge_ma.csv,619396,ScientificName,CommonName,,,Genus,species,Cultivar,diameter,,,x,y,OBJECTID,,,trunks,,,,,,,created_date,last_edited_date,PlantDate,,,,,LatLong Tools
+Cape Coral,Florida,capecoral_fl.csv,,,SPECIES,,,,,,,DBH,,x1,y1,ID,,HEIGHT,TRUNKNO,,,,CONDITION,,,CON_DATE,,,,CANOPY,,,
+Champaign,Illinois,champaign_il.csv,,SPP,COMMON,,FAMILY,,,,DBH,,,x,y,OBJECTID,,,TRUNKS,,,,COND,,,INV_DATE,INSPECT_DT,,,,,,LatLongTools
+Charlotte,North Carolina,charlotte_nc.csv,,,Common,,,,,,DBH,,,x,y,OBJECTID,,,,,,,,,,,,,,,,,LatLongTools
+Chattanooga,Tennessee,chattanooga_tn.csv,,Botanical,,commonname,,genus,species,Cultivar,diameter,,,x,y,OBJECTID,height,,,,,,,,,CreationDate_1,,,,,,,LatLongTools
+Cincinnati,Ohio,cincinnati_oh.csv,,,COMMON_NAME,,FAMILY,GENUS,SPECIES,CULTIVAR,SIZE_,,,x,y,OBJECTID,TOTAL_HEIGHT,,,,,,,,,,,,STATUS,,,,LatLong Tools
+Clarksville,Indiana,clarksville_in.csv,,Scientific,CommonName,Code,,Genus,,Cultivar,DBH,,,Longitude,Latitude,OBJECTID,,,NumberofSt,,,,,,,DateAdded,,,Status,,,,
+Clarksville,Tennessee,clarksville_tn.csv,,SPECIES,COMMON_NAM,SPEC_CODE,,GENUS,,,DBH,,,LONGITUDE,LATITUDE,FID,,,,,,,CONDITION,,,DATE_,,,,,,,
+Clearwater,Florida,clearwater_fl.csv,,,NAME_,,,,,,DBH_SIZE,,,x,y,OBJECTID,,,,,,,,RATING,,DATE_INV,last_edited_date,,,,,,LatLong Tools
+Columbus,Indiana,columbus_in.csv,,SPP,,,,,,,DBH,,,LONGITUDE,LATITUDE,FID,,,,,,,COND,,,INV_DATE,INSPECT_DT,,,,,,
+Columbus,Ohio,columbus_oh.csv,,,SPP_COM_rep,SP_CODE,,,,CULTIVAR,DIAM_BREAST_HEIGHT,,,x,y,OBJECTID,,,,,,,COND_rep,,,,,PLANTING_DATE,,,,,LatLong Tools
+Concord,Massachusetts,concord_ma.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,,,,Condition,,,,,,,,,,
+Crawfordsville,Indiana,crawfordsville_in.csv,,SPP,,,,,,,DBH,,,LONGITUDE,LATITUDE,ID_rep,,,,,,,COND,RATING,FAIL,,,,,,,,
+Danville,Illinois,danville_il.csv,,,TreeCommonName,,TreeGroupName,,,,DiameterBreastHeight1,,,x,y,TreeID,,,,,,,StructureCondition,,,,,,,,,,LatLong Tools
+Des Plaines,Illinois,desplaines_il.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,Stems,,,,,,,,,,,,,,
+Doral,Florida,doral_fl.csv,,SCI_NAME,TREE_SPECI,,,,,,,DBH_CLASS,,x,y,FID,,,,,,,CONDITION,,,GPS_DATE,,,,,,,LatLongTools
+Dublin,Ohio,dublin_oh.csv,,,Species,,,,,Cultivar,DBH,,,x,y,OBJECTID,,,,,,,,,,CreationDate,EditDate,Installed_Date,Tree_Status,,,,LatLongTools
+Durham,North Carolina,durham_nc.csv,,,commonname,,,genus,species,,diameterin,,,x,y,facilityid,,heightft,,,,,condition,,,,,,,,,,"LatLong Tools, only present = 'Planting Site'"
+East Lansing,Michigan,eastlansing_mi.csv,,dvSPP,Tree_Name,,,,,,,dvDBH,,x,y,OBJECTID,,,,,,,,,,,,,,,,,LatLong Tools
+Evanston,Illinois,evanston_il.csv,,SPP,Common,,,,,CULTIVAR,DBH,,,x,y,OBJECTID,,,,,,,,,,created_date,last_edited_date,,,,,,LatLongTools
+Falls Church,Virginia,fallschurch_va.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,,,,,,,,,,,,,,
+Fayetteville,North Carolina,fayetteville_nc_1.csv,,,,,F7,,,,,F10,,Lon,Lat,F1,,,,,,,F11,,,,,,,,,,
+Fayetteville,North Carolina,fayetteville_nc_2.csv,,,,,Species,,,,,DBH,,Longitude,Latitude,Tree_Numbe,,,,,,,Condition,,,GPS_Date,,,,,,,
+Fayetteville,North Carolina,fayetteville_nc_3.csv,,,,,SpeciesNam,,,,,DBH,,x,y,Tree__,,,,,,,Condition,,,,,,,,,,LatLong Tools
+Fayetteville,North Carolina,fayetteville_nc_4.csv,,,TreeSpecie,,,,,,DBH,,,x,y,FID,,,,,,,Condition,,,DateAndTim,,,,,,,LatLong Tools
+Ferndale,Michigan,ferndale_mi.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,Multi_Stem,,,,,,,,,,,,,
+Frederick,Maryland,frederick_md.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,,,,,,,Inventory_Date,,,,,,,
+Gaithersburg,Maryland,gaithersburg_md.csv,,Botanical_Name,Common_Name,,,,,,DBH,,,x,y,Tree_ID,,,Trunks,,,,Condition,,,,,,,,,,LatLongTools
+Gastonia,North Carolina,gastonia_nc.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,Multi_Stem,,,,,,,,,,,,,
+Goshen,Indiana,goshen_in.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,Height,,,,,,,,,Inventory_Date,,,,,,,
+Grand Island,New York,grandisland_ny.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,Multi_Stem_Tree,,,,,,,,,,,,,
+Grand Rapids,Michigan,grandrapids_mi.csv,,BOTANICAL,COMMON,,,,,,EXACT_DBH,DBH,,x,y,ID,,,TRUNKS,,,,CONDITION,,,GPSDATE,UDATE,,,,,,LatLong?
+Greensboro,North Carolina,greensboro_nc.csv,,Scientific,Common,,,,,,DBH,,,Longitude,Latitude,OBJECTID,,,,,,,,,,SurveyDateTime,,,,,,,
+Greenwich,Connecticut,greenwich_ct.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,,,,,,,,Site_Last_Changed_On,,,,,,
+Groton,Connecticut,groton_ct.csv,,,CommonName,iTreeCode,Family,Genus,Species,Cultivar,DBH,,,Longitude,Latitude,OBJECTID,,,,,,,,,,Year,,,,,,,
+Gurnee,Illinois,gurnee_il.csv,,,Species,SpeciesCode,,,,,DBH_Value,,,x,y,OBJECTID,,,,,,,CondCode,,,Date_of_Inventory,,Planting_Date,,,,,LatLongTools
+Harrisburg,Pennsylvania,harrisburg_pa.csv,,,,Species,,,,,DBH,,,Longitude,Latitude,TreeID,,,,,,,F2018_Tree_Conditions,,,InputDate,,,,,,,
+Hartford,Connecticut,hartford_ct.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,Multi_Stem,,,,,,,,,,,,,
+Hartford (park),Connecticut,hartford_ct_P.csv,,Latin_Name,Common_Name,,,,,,DSH,,,x,y,Tree,,,,,,,Condition,Risk_Rating,,,,,,,,,
+Highland Park,Illinois,highlandpark_il.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,Diameter,,,Longitude,Latitude,Site_ID,Height,,Stems,,,,,,,Inventory_Date,,,,,,,
+Hoboken,New Jersey,hoboken_nj.csv,,,CommonName,,,Genus,Species,Cultivar,Ex_DBH,,,Longitude,Latitude,FID_2,,Tree_Heigh,,,,,,,,,,Year_Plant,,Crown_Widt,,,
+Holland,Michigan,holland_mi.csv,,SPP_BOT_rep,commonname,,,genus,species,cultivar,diameter,,,x,y,OBJECTID,height,,,,,,,,,,,installdate,,,,,LatLongTools
+Indianapolis,Indiana,indianapolis_in.csv,,SPECIES,COMMONNAME,,FAMILY,GENUS,,,DBH,,,LONGITUDE,LATITUDE,ObjectId,,,,,,,,,,,,,,,,,
+Irondequoit,New York,irondequoit_ny.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,ID_rep,,,,,,,,,,,,,,,,,
+Ithaca,New York,ithaca_ny.csv,979099,SPP_bot,SPP_com,,,,,Cultivar,DBH,,,longitude,latitude,OBJECTID,,,,,,,,,,,,PLDate,,,,,
+Jackson,Mississippi,jackson_ms.csv,,,Plant_Spec,,,,,,Trunk_Diam,,,Longitude,Latitude,OBJECTID,,,,,,,Health_Sta,,,CreationDa,EditDate,,,,,,
+Jersey City (city),New Jersey,jerseycity_nj.csv,,SPP_BOT,SPP_COM,,,,,,DBH,,,LONGITUDE,LATITUDE,UNIQUEID,,,,,,,COND,,,INV_DATE,,,,,,,"remove duplicate, UNIQUEID"
+Jersey City (park),New Jersey,jerseycity_nj_P.csv,,SPP,COMMON,,,,,,DBH,,,LONGITUDE,LATITUDE,UNIQUEID,,,,,,,COND,RATING,,INV_DATE,,,,,,,"remove duplicate, UNIQUEID"
+Kent,Ohio,kent_oh.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,Cultivar,DBH,,,Longitude,Latitude,Site_ID,,,Trunks,,,,,,,,,,,,,,
+Knoxville,Tennessee,knoxville_tn.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,Cultivar,Diameter,,,Longitude,Latitude,Site_ID,,,,,,,,,,Inventory_Date,,Year_Planted,,,,,
+Lancaster,Pennsylvania,lancaster_pa.csv,,SpeciesNam,CommonName,SpCode,,,,Cultivar,DBH,,,X_Coorid,Y_Coorid,OBJECTID,,,,,,,TreeCondit,,,CreationDa,EditDate,,,,,,
+Lexington,Massachusetts,lexington_ma.csv,,Botanical,Common,,,,,,Exact_DBH,DBH_Range,,Longitude,Latitude,Tree_ID,Exact_Heig,Height_Ran,,,,,Tree_Condi,,,Created_On,,,,,,,
+Lombard,Illinois,lombard_il.csv,,Scientific_Name,Species_Name,,,,,,Diameter,,,x,y,Tree_ID,,,,,,,,,,,,Installed,,,,,LatLongTools
+Louisville,Kentucky,louisville_ky.csv,,,,,Tree_Name_Genus_Species,,,cultivar,diameter,,,x,y,OBJECTID,,,,,,,Condition,,,,last_edited_date,,Status,,,,"LatLong Tools, only 'Street Tree' and 'Park Tree'"
+Louisville (park),Kentucky,louisville_ky_P.csv,,LatinName,CommonName,,Family,Genus,,,DBH,,,x,y,FID,,,,,,,Condition,,,CreationDate,,InstallYea,Status,,,,LatLongTools
+Lowell,Massachusetts,lowell_ma.csv,,,commonname,,,,,,DBH_in,,circum_in,x,y,FID,,,,,,,Tree_Condi,,,CreationDa,EditDate,,,,,,"LatLong Tools, need to add circumference field"
+Lower Merion town,Pennsylvania,lowermerion_pa.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,,,,,,,,,,,,,,
+Madison,Wisconsin,madison_wi.csv,,SPP_BOT,SPP_COM,,,,,,DIAMETER,,,x,y,OBJECTID,,,,,,,,,,INV_DATE,INSPECT_DT,,,,,,LatLong Tools
+Manchester,New Hampshire,manchester_nh.csv,,,,,species,,,,size,,,x,y,objectid,height,,,,,,condition,,,,,,,crown_width,,,LatLong Tools
+Marathon County (parks),Wisconsin,marathon_wi_P.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,Multi_Stem,,,,,,,,,,,,,
+Marysville,Ohio,marysville_oh.csv,,SPP_BOT_rep,common_name,,latin_family,latin_genus,latin_specific_epithet,variety,dbh_class,dbh_class_rep,,x,y,OBJECTID,height_class,height_class_rep,,MultiStemmed,,Tree_Age,tree_condition_rep,,,,last_survey,date_planted,status,,,,LatLongTools
+Miami Beach,Florida,miamibeach_fl.csv,,SCI_NAME,TREE_SPECI,,,,,,DBH,,,x,y,OBJECTID,,,,,,,CONDITION,,,GPS_DATE,,,,,,,LatLongTools
+Miami Lakes,Florida,miamilakes_fl.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,Height,,Trunks,,,,,,,,,,,,,,
+Millburn,New Jersey,millburn_nj.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,Multi_Stem,,,,,,,,,,,,,
+Milwaukee,Wisconsin,milwaukee_wi.csv,,latin_name,common_name,code,,,,,diameter_in,,,longitude,latitude,primary_id,height_ft,,,,,,,,,inventory_yr,,,,,,,
+Miramar,Florida,miramar_fl.csv,,BOTANICAL,COMMON,,,,,,EXACT_DBH,DBH,,x1,y1,ID,EXACT_HEIG,HEIGHT,TRUNKS,,,,CONDITION,,,GPSDATE,UDATE,,,,,,LatLong Tools
+Montgomery,Alabama,montgomery_al.csv,,SPP_BOT,SPP_COM,,,,,,DBH,,,LONGITUDE,LATITUDE,OBJECTID,,HEIGHT,,,,,,,,,,,,CANOPYWID,,,
+Mount Pleasant,Wisconsin,mountpleasant_wi.csv,,,Species,,,,,Cultivar,Diameter,,,x,y,OBJECTID,,HClass,,,,,ConditionRating_rep,,,created_date,InspDate,YearPlant,,,,,
+Muncie,Indiana,muncie_in.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,ID_rep,,,,Multi-Stem,,,Condition,,TRAQ-Failure_Likelihood,,,,,,,,
+Muskegon,Michigan,muskegon_mi.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,Multi_Stem,,,,,,,,,,,,,
+Naperville,Illinois,naperville_il.csv,,,ROWTREE_TYPE_rep,,FAMILY,GENUS,,CULTIVAR,DIAMETER,,,x,y,OBJECTID,,,,,,,CONDITION_CLASS,,,,DATE_CHANGED,DatePlanted,,,,,"LatLong Tools, value map"
+Nashville,Tennessee,nashville_tn_S.csv,,,iTreeName,,,T_GENUS,T_SPECIES,,DBH1,,,x,y,OBJECTID_12,,Height,,,,,T_CONDITION,,,,,,,,,,LatLong Tools
+New Bedford,Massachusetts,newbedford_ma.csv,,ScientName,CommonName,,,Genus,Species,,Dbh1,,,Longitude,Latitude,OBJECTID,,HeightClas,Stems,,,AgeClass,Condition,TRARiskRat,TRAFailure,,LastUpda,,,CanRadius,,,
+New Haven,Connecticut,newhaven_ct.csv,,,COMM_NAME,,,,,,DBH,,,LONG,LAT,OBJECTID,,,,,,,,,,INV_DATE,last_edited_date,,,,,,
+New York,New York,newyork_ny.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,x_rep,y_rep,OBJECTID,,,,,,,TPCondition,RiskRating,,CreatedDate,UpdatedDate,PlantedDate,TPStructure,,,,"spp processed in R. location processed in R, status (TPSTRUCTURE = 'Full')"
+Newton,Massachusetts,newton_ma.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,,,,,,,,,,,,,,
+Norfolk,Virginia,norfolk_va.csv,,,Common Name,,,Genus,Species,,Trunk Diameter,Trunk Diameter Range,,Longitude,Latitude,Tree ID,,,,,,,,,,,,,,,,,
+Normal,Illinois,normal_il.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,Multi_Stem,,,,,,,,,,,,,
+North Miami Beach,Florida,northmiamibeach_fl.csv,,BOTANICAL,COMMON,,,,,,EXACT_DBH,DBH,,x1,y1,ID,EXACT_HEIG,HEIGHT,TRUNKS,,,,CONDITION,,,GPSDATE,,,,,,,LatLongTools
+Northampton,Massachusetts,northampton_ma.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,,,,,,,Inventory_Date,,,,,,,
+Novi,Michigan,novi_mi.csv,,SPECIES,COMMONNAME,,,,,,,DBH,,x1,y1,OBJECTID,,,,,,,,,,INVDATE,,PLANTDATE,,,,,LatLongTools
+O'Fallon,Illinois,ofallon_il.csv,,TREESPECIES,COMMON_NAME,,,TREEGENUS,,,TREECALIPER,,,LONGITUDE,LATITUDE,OBJECTID,TREEHEIGHT,,,,,,CONDITION,,,TREECALIPERDATE,,TREEPLANTDATE,,,,,
+Oak Park,Illinois,oakpark_il.csv,,SPP_LATIN,SPP_COMMON,,,,,,DBH,,,x,y,OBJECTID,HEIGHT,,,,,,,,,,,,,,,,LatLongTools
+Palmetto Bay,Florida,palmettobay_fl.csv,,Scientific,CommonName,,,,,,DBH,,,X,Y,MainID,,,,,,,StructureC,,,,,,,,,,
+Park Ridge,Illinois,parkridge_il.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,Trunks,,,,,,,,,,,,,,
+Philadelphia,Pennsylvania,philadelphia_pa.csv,,tree_name,,,,,,,tree_dbh,,,loc_x,loc_y,objectid,,,,,,,,,,,,,,,,,
+Pinellas County,Florida,pinellas_fl.csv,,,,SPECIES,,,,,DBH,DBH_CLASSES,,x,y,OBJECTID,HEIGHT_TOTAL,,,,,,CONDITIONRATING,,,DATE_,,INSTALLDATE,,CROWNWIDTH_NS,CROWNWIDTH_EW,,
+Pittsburgh,Pennsylvania,pittsburgh_pa.csv,,scientific_name,common_name,,,,,,diameter_base_height,,,longitude,latitude,_id,height,,,,width,,condition,,,,,,,,,,
+Pompano Beach,Florida,pompanobeach_fl.csv,,BotanName_str,CommonName_str,,,,,,DIAMETER,DBH_str,,x,y,OBJECTID,ExactHeight,HEIGHT_str,,,,,Condition_str,,,,,,,,,,LatLong Tools
+Port St. Lucie,Florida,portstlucie_fl.csv,,BotanicalName,CommonName,,,,,,DBH,,,Longitude,Latitude,OBJECTID,Height,,Trunks,,,,Condition,,,Inspected,,,,,,,
+Portland,Maine,portland_me.csv,,BotanicalName,CommonName,,,,,,DBH,,,x,y,OBJECTID,,,,,,,TreeStatus,,,EditDate,,PlantingDate,,,,,LatLongTools
+Poughkeepsie,New York,poughkeepsie_ny.csv,,BOTANICAL,COMMON,,,,,,EXACT_DBH,DBH,,X,Y,ID,,,TRUNKS,,,,CONDITION,,,GPSDATE,,,,,,,
+Princeton,New Jersey,princeton_nj.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,Multi_Stem,,,,,,,,,,,,,
+Providence,Rhode Island,providence_ri.csv,,Species,,,,,,,Diameter in Inches,,,x,y,ID_str,,,,,,,,,,,,,,,,,parsed coordinates
+Raleigh,North Carolina,raleigh_nc.csv,,,,SPP_CODE,,,,,DIAMETER,,,x,y,OBJECTID,,,,,,,,,,,,,,,,,LatLong Tools
+Richmond,Indiana,richmond_in.csv,,SPP_BOT_rep,SPECIES_COM,,,,,,DBH,,,LONGITUDE,LATITUDE,ID_rep,,,,,,,COND,RATING,FAIL,,,,,,,,
+Richmond,Virginia,richmond_va.csv,,SPP,,,,,,,DBH,,,x,y,AssetID,,,TRUNKS,,,,COND,,,,,,Status,,,,LatLong Tools
+Ridgeland,Mississippi,ridgeland_ms.csv,,,T_NAME,iTreeName,,T_GENUS,T_SPECIES,,DBH1,,,Long,Lat,F__OBJECTID,,,,,,,,,,CreationDate,EditDate,,,,,,
+Rochester,New York,rochester_ny.csv,,,TREE_NAME_VAL,,,GENUS,SPECIES,,DBH_VAL,,,x,y,OBJECTID,,,,,,,,,,INV_DATE,,,,,,,LatLong Tools
+Sandy Springs,Georgia,sandysprings_ga.csv,,,NAME,,,GENUS,SPECIES,Cultivar,DIAMETER,,,x,y,OBJECTID,HEIGHT,,,,,TREEAGE,CONDITION,,,CreationDate,EditDate,INSTALLDATE,,,,,LatLong Tools
+Sanford,Florida,sanford_fl1.csv,,,TREE_SPECI_rep,TREE_SPECI,,,,,DBH,,,x,y,OBJECTID,HEIGHT,,,,,,HEALTH,,,,,,,,,,LatLongTools
+Sanford,Florida,sanford_fl2.csv,,SPECIES_LA_rep,SPECIES_CO_rep,,,SPECIES_GE_rep,,,DBH_EXACT_rep,DBH_rep,,x,y,OBJECTID,TREE_HEIGH,HEIGHT_RAN,,,,,,,,,,,,,,,LatLongTools
+Sarasota county,Florida,sarasota_fl.csv,,genusname,commonname,,,,,,diameterbreastheight,,,x,y,objectid,treeheight,,,,,,conditionrating,,,,,dateplanted,,,,,LatLongTools
+Savannah,Georgia,savannah_ga.csv,,,NAME,,,,,,DBH,,,x,y,FID,,HEIGHT,,,,,CONDITION,,,DATE_CREAT,EDIT_DATE,PLANT_YR,,,,,LatLong Tools
+Schaumburg,Illinois,schaumburg_il.csv,,SPP,SPPCOMMON,,,,,,DBH,DBH2,,X,Y,OBJECTID,,,,,,,COND,,,Inv_Date,,,,CANWIDTH,,,
+Schenectady,New York,schenectady_ny.csv,,scientific,commonname,,,,,,dbh,,,longitude,latitude,fid,,,,,,,,,,lastmodifi,,,,,,,
+Shrewsbury,Massachusetts,shrewsbury_ma.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,Height,,,Multi_Stem,,,,,,,,,,,,,
+Somerville,Massachusetts,somerville_ma.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,ObjectId,,,,,,,,,,,,,,,,,spp processed in R
+South Elgin,Illinois,southelgin_il.csv,,SPP,CommonName,,,,,,DBH,,,x,y,OBJECTID,,,TRUNKS,,,,COND,RATING,PROBFAIL,Inv_Date,last_edited_date,,,,,,LatLong Tools
+Springfield,Illinois,springfield_il.csv,,NAMELATIN,NAMECOMMON,,,,,VARIETY,DBH,,,x,y,OBJECTID,,,STEMS,,,,CONDITION,RISK_LEVEL,,created_date,last_edited_date,,TREE_STATUS,,,,"LatLong Tools, only status = 'ACTIVE TREE'"
+Springfield,Massachusetts,springfield_ma.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,Trunks,,,,,,,Inventory_Date,,,,,,,
+St. Charles,Illinois,stcharles_il.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,,,,,,,,,,,,,,
+St. Louis (city),Missouri,stlouis_mo.csv,,,COMMON,,,,,,DBH,,,x,y,OBJECTID,,,,,,,CONDITION,,,,,,,,,,LatLong Tools
+St. Louis (park),Missouri,stlouis_mo_P.csv,,Scientific_Name,Common_Names,,,Genus,,Cultivar,DBH,,,x,y,OBJECTID,,,,,,,Condition,Risk_Rating,,Data_Collected_Date,,,Status,,,,LatLong Tools
+Starkville,Mississippi,starkville_ms.csv,,,T_NAME,,,T_GENUS,T_SPECIES,,DBH1,,,x,y,TREEID,,T_HEIGHT,,,,,T_CONDITION,T_RISK,,,,,,,,,LatLong Tools
+Statewide,Indiana,state_in.csv,,SPECIES,COMMONNAME,,,GENUS,SPECIES,,DBH,DBHCLASS,,LONGITUDE,LATITUDE,ObjectId,,,,,,,,,,INVYEAR,,,,,,,
+Statewide,Pennsylvania,state_pa.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,Cultivar,Diameter,,,Longitude,Latitude,ID_rep,,,,,,,,,,,,,City,,,,
+Statewide,Vermont,state_vt.csv,,,SPECIES,,,,,,Diameter,,,Long,Lat,OBJECTID,,,,,,,ConditionID,,,CollectionDateTime,LastTreeInventoryDate,,,,,,
+Statewide,Wisconsin,state_wi.csv,,latin_name,common_name,code,,,,cultivar,diameter_in,diameter_in_range,,longitude,latitude,primary_id,height_ft,height_ft_range,,,,,,,,inventory_yr,,,,,,,
+Statewide,Kentucky,state_ky.csv,,SPP_BOT_rep,SPP_COM_rep,,Species,,,,DBH__in_,,,x,y,OBJECTID,,,,,,,,,,Date,,,Status,,,,LatLongTools
+Sterling Heights,Michigan,sterlingheights_mi.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,,,,Condition,,,Inventory_Date,Site_Last_Changed_On,Proposed_Planting_Year,,,,,
+Syracuse,New York,syracuse_ny.csv,979539,SPP_BOT,SPP_COM,,,,,,DBH,,,LONGITUDE,LATITUDE,ID,,,,,,,,,,,,,,,,,
+Tallahassee,Florida,tallahassee_fl.csv,2405563,BOTANICAL,COMMON,,,,,,EXACT_DBH,DBH,,x1,y1,OBJECTID,EXACT_HGT,HEIGHT,,,,,CONDITION,,,GPSDATE,,,,,,,LatLong Tools
+Terre Haute,Indiana,terrehaute_in.csv,,LATIN_NAME,SPP_COM_rep,,FAMILY,GENUS,,VARIETY,DBH,,,X,Y,ID_rep,,,STEMS,,,,CONDITION,,,,,,,,,,
+Toledo,Ohio,toledo_oh.csv,,,SpeciesFullName,,Species,,,,,DBH,,x,y,OBJECTID,,,,,,,,,,InventoryDate,,,,,,,NEEDS LATLONG
+Tonawanda,New York,tonawanda_ny.csv,,,SpeciesType,,,,,,DBH,,,x,y,OBJECTID,,TreeHeight,,,,,Condition,,,DateLastUpdated,last_edited_date,,,,,,LatLongTools
+Trenton,New Jersey,trenton_nj.csv,,,commonname,,,,,,diameter,,,x,y,OBJECTID,,,,,,,,,,created_date,last_edited_date,installdate,,,,,LatLong Tools
+Trenton,Michigan,trenton_mi.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,,Multi_Stem,,,,,,,,,,,,,
+Urbana,Illinois,urbana_il.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,Tree_Height,Trunks,,,,,,,Inventory_Date,,,,,,,
+Valparaiso,Indiana,valparaiso_in.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,Site_ID,,,Trunks,,,,Condition,,,,,,,,,,
+Virginia Beach,Virginia,virginiabeach_va.csv,,ScientificName,CommonName,,,,,,DBH,,,Longitude,Latitude,FacilityID,,,,,,,Condition,,,,EditDate,,Status,,,,only existing trees
+Washington,District of Columbia,washington_dc.csv,,SCI_NM,CMMN_NM,,FAM_NAME,GENUS_NAME,,,DBH,,,x,y,OBJECTID,,,,,,,CONDITION,,,,CONDITIODT,DATE_PLANT,,,,CROWN_AREA,LatLong Tools
+Waukegan,Illinois,waukegan_il.csv,,LATIN,COMMON_NAME,,,,,VARIETY,DBH,,,x1,y1,OBJECTID,,,TRUNKS,,,,CONDITION,RISK,FAIL_LKLHD,INV_DATE,,PLANT_DATE,,,,,LatLong Tools
+Wellesley,Massachusetts,wellesley_ma.csv,,ScientificName,CommonName,,,,,,DBH,,,x,y,OBJECTID,,,Trunks,,,,Condition,,,,,,Status,,,,LatLong Tools
+Weston,Florida,weston_fl.csv,,BOTNAME,NAME,BOTABBR,FAMILY,GENUS,SPECIES,,DIAMETER,,,x,y,OBJECTID,HEIGHT,,,,,,CONDITION,,,CREATEDDATE,LASTUPDATE,,,,,,LatLongTools
+Wilmette,Illinois,wilmette_il.csv,,SPP_BOT_rep,SPP_COM_rep,,,,,,DBH,,,Longitude,Latitude,ID_rep,,,,,,,,,,,,,,,,,
+Wilmington,North Carolina,wilmington_nc.csv,,SPP_BOT,SPP_COM,,,,,,DBH,,,LONGITUDE,LATITUDE,OBJECTID,,,STEMS,,,,CONDITION,RATING,FAIL,INV_DATE,,,,,,,
+Winter Haven,Florida,winterhaven_fl.csv,,LatinName,CommonName,Code,,Genus,,Cultivar,DBH,DBHRange,,Longitude,Latitude,TreeID,TreeHeight,HeightRang,NumberofSt,,,,Condition,,,,LastModifi,,Status,,,,
