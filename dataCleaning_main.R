@@ -40,7 +40,8 @@ filelist <- list.files(path = here('data/preprocess'),
   .[. != 'hamilton_oh.csv'] %>% 
   .[. != 'muskegon_mi.csv'] %>% 
   .[. != 'madison_in.csv'] %>% 
-  .[. != 'terrehaute_in.csv']
+  .[. != 'terrehaute_in.csv'] %>% 
+  .[. != 'toledo_oh.csv']
 
 # Read metadata to find which column has the botanical species name
 file_metadata <- read.csv(here('data', 'file_metadata.csv'))
@@ -156,6 +157,19 @@ R1LIST <- lapply(X = filelist, FUN = pull_inv) %>%
 
 SPPBOT_list <- data.frame(SPP_BOT = unique(R1LIST$SPP_BOT))
 SPPCOM_list <- data.frame(SPP_COM = unique(R1LIST$SPP_COM))
+
+SPPCOM_list2 <- SPPCOM_list %>% 
+  rename(SPP_COM_ORIG = "SPP_COM") %>% 
+  mutate(SPP_COM = SPP_COM_ORIG, 
+         SPP_COM = gsub("[\u2018\u2019\u201A\u201B\u2032\u2035]", "'", SPP_COM)) %>% 
+  mutate(COM_CULTIVAR = str_extract(SPP_COM, "(?<=\\').*(?=\\')")) %>% 
+  mutate(SPP_COM = gsub("\\s*\\'[^']+\\'", '', SPP_COM), 
+         SPP_COM = gsub("[^[:alpha:], ']", '', SPP_COM), 
+         SPP_COM = str_to_lower(trimws(str_squish(SPP_COM))), 
+         SPP_COM = ifelse(str_sub(SPP_COM, start = -1, end = -1) == ',', 
+                          str_sub(SPP_COM, start = 1, end = -2), 
+                          SPP_COM)) 
+
 SPPOTHER_list <- data.frame(SPP_OTHER = unique(R1LIST$SPP_OTHER))
 SPPCODE_list <- data.frame(SPP_CODE = unique(R1LIST$SPP_CODE))
 
@@ -171,7 +185,7 @@ SPPBOT_exact <- filter(SPPBOT_tmd, matched == TRUE) %>%
 SPPBOT_fuzzy <- filter(SPPBOT_tmd, matched == FALSE | is.na(matched))
 
 # filtering matching from SPP_COM 
-SPPCOM_matching <- spp_com(SPPCOM_list)
+SPPCOM_matching <- spp_com(unique(select(SPPCOM_list2, SPP_COM)))
 
 SPPCOM_exact <- filter(SPPCOM_matching, distance == 0) %>% 
   rename(SPPCOM_edit = "SPP_BOT") %>% 
@@ -211,11 +225,23 @@ R3LIST <- merge(R2LIST, R2spp_crosswalk,
                 by = c("SPP_COM", "SPP_BOT", "SPP_OTHER", "SPP_CODE", "GENUS", "SPECIES", "CULTIVAR"), 
                 all.x = TRUE)
 
+city_dbh_check <- group_by(R3LIST, CITY) %>% 
+  summarise(invalid_dbh = sum(dbh_flag))
+
+R3LIST <- mutate(R3LIST, SPP_FINAL = coalesce(SPP_edit, SPPCOM_edit, SPPCODE_edit, SPPMATCH_EDIT))
+  
+R3LIST_isnafinal <- filter(R3LIST, is.na(SPP_FINAL)) %>% 
+  select(all_of(c("SPP_BOT", "SPP_COM", "SPP_CODE", "SPP_OTHER", 
+                  "GENUS", "SPECIES", "CULTIVAR"))) %>% 
+  unique()
+
+R3LIST_isnafinal <- unique(R3LIST_isnafinal)
+
 R3LIST <- filter(R3LIST, dbh_flag == 0)
 
-R3LIST <- mutate(R3LIST, SPP_FINAL = coalesce(SPP_edit, SPPCOM_edit, SPPCODE_edit, SPPMATCH_EDIT)) %>% 
-  filter(SPP_FINAL != 'REMOVE') %>% 
-  filter(SPP_FINAL != is.na(SPP_FINAL)) 
+R3LIST <- filter(R3LIST, SPP_FINAL != 'REMOVE') %>% 
+  filter(!is.na(SPP_FINAL)) 
+
 
 R3LIST <- R3LIST %>% 
   mutate(CULMATCH_EDIT = na_if(CULMATCH_EDIT, '')) %>% 
@@ -231,15 +257,21 @@ R3LIST <- R3LIST[, !names(R3LIST) %in%
 
 R3LIST <- R3LIST %>% 
   select(all_of(c("SPP_FINAL", "CUL_FINAL", "dbhClean", 
-                "LONG_col", "LAT_col", "CITY", "TREE_ID", "CONDITION", 
+                "LONG_col", "LAT_col", "CITY", "CONDITION", 
                 "hgtClean", "STATUS", "STEMS", 
                 "DATE_INV", "DATE_UPDATE", "DATE_PLANT", "AGE", 
-                "CROWN1", "CROWN2", "CIRC_EXACT", "RISK", "FAILURE", "WIDTH")))
+                "CROWN1", "CROWN2", "CIRC_EXACT", "RISK", "FAILURE", "WIDTH",
+                "TREE_ID")))
 
 colnames(R3LIST) <- 
-  c("SPECIES", "CULTIVAR", "DBH", "LON", "LAT", "CITY", "TREE_ID", "CONDITION", 
+  c("SPECIES", "CULTIVAR", "DBH", "LON", "LAT", "CITY", "CONDITION", 
     "HEIGHT", "STATUS", "STEMS", "DATE_INV", "DATE_UPDATE", "DATE_PLANT", "AGE", 
-    "CROWN1", "CROWN2", "CIRC_EXACT", "RISK", "FAILURE", "WIDTH")
+    "CROWN1", "CROWN2", "CIRC_EXACT", "RISK", "FAILURE", "WIDTH", "LOCAL_ID")
+
+R4LIST <- R3LIST %>% 
+  arrange(CITY, LOCAL_ID, DBH, LAT)
+R4LIST$TREEID <- rownames(R4LIST)
+R4LIST <- relocate(R4LIST, last_col())
 
 # FIND ISSUES
 R3NA <- filter(R3LIST, is.na(SPP_FINAL))
@@ -254,7 +286,7 @@ unique(select(R1LIST, "CONDITION"))
 
 filelist = filelist[1:10]
 
-file_metadata[131, "SPP_COM"] <- 'SPP_COM_rep'
+file_metadata[153, "FILENAME"] <- 'shrewsbury_ma.csv'
 
 nrow(filter(R1LIST, dbh_flag == 0))
 
@@ -265,9 +297,9 @@ R1LIST %>% select(c("CITY", "TREE_ID")) %>%
             validTree = total_row - na_count, 
             uniqueID = length(unique(TREE_ID)))
 
-city_inv <- read_csv(here('data/preprocess/toledo_oh.csv'), 
+city_inv <- read_csv(here('data/preprocess/columbus_oh.csv'), 
                      col_types = cols(.default = col_character()))
-city_inv <- pull_inv('washington_dc.csv') 
+city_inv <- pull_inv('annarbor_mi.csv') 
 city_inv <- pull_dbh2('buffalo_ny.csv')
 
 print(city_inv$xCols)
@@ -280,23 +312,8 @@ file_metadata[24, "LONG_col"] <- 'X'
 
 unique(select(city_inv, CONDITION))
 
-rm(city_colList)
-rm(baltimoreCompare)
-
-city_colList <- filter(file_metadata, FILENAME == 'allentown_pa.csv')
-
-city_inv <- pull_height2('miramar_fl.csv')
-
-R1LIST 
-
 # DIAGNOSTICS ================
 print(sum(R2LIST$dbh_flag == 1))
-
-clarksville <- pull_dbh('pittsburgh_pa.csv')
-
-colnames(pittsburgh)
-
-pittsburgh <- read.csv(here('data/preprocess/madison_in.csv'))
 
 file_metadata[55, "CONDITION"] <- 'COND'
 
