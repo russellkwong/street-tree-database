@@ -4,7 +4,7 @@ library('tidyverse')
 
 i_am('TreeDatabase/inventoryFormat.R')
 
-city_inv <- read.csv(here('TreeDatabase/sarasota_fl.csv'))
+city_inv <- read.csv(here('TreeDatabase/northampton_ma.csv'))
 city_inv <- read.csv(here('qualitycontrol/data/preprocess/auburn_in.csv'))
 invalid_spp <- 'Vacant|Stump|Inactive|Planting|Eliminated|Proposed|NoTree|DNR'
 
@@ -48,13 +48,13 @@ tkpr_simple <- function(city_filename){
 }
 
 tkpr_simple2 <- function(city_filename, spp_col = 'Species', dbh_col = 'DBH', 
-                         export = TRUE){
+                         export = FALSE){
   city_inv <- read.csv(here(paste0('TreeDatabase/', city_filename)))
   
   colnames(city_inv) <- sapply(colnames(city_inv), FUN = colname_invformat)
   city_inv <- filter(city_inv, !grepl(invalid_spp, city_inv[[spp_col]], 
                                       ignore.case = TRUE)) %>%
-    filter(.[[dbh_col]] > 0)
+    filter(.[[dbh_col]] > 0 & .[[dbh_col]] <= 500)
   city_inv <- treekeeper_spp_format(city_inv)
   
   if (export == TRUE){
@@ -81,6 +81,25 @@ tkpr_multi <- function(city_filelist, city_filenameFull,
     write_preprocess(city_invFull, city_filenameFull)
   }
   return(city_invFull)
+}
+
+arcgis_clean <- function(city_filename, spp_col, dbh_col, 
+                         read = FALSE, export = FALSE){
+  city_inv <- read.csv(file = here(paste0('TreeDatabase/', city_filename)))
+  
+  if (read == FALSE){
+    colnames(city_inv) <- sapply(colnames(city_inv), FUN = colname_invformat)
+  
+    city_inv <- filter(city_inv, !grepl(invalid_spp, city_inv[[spp_col]], 
+                                      ignore.case = TRUE)) %>%
+      filter(.[[dbh_col]] > 0)
+  }
+  
+  if (export == TRUE){
+    write_preprocess(city_inv, city_filename)
+  }
+  
+  return(city_inv)
 }
 
 # === KNOXVILLE, TN ===============
@@ -428,26 +447,214 @@ city_inv <- tkpr_simple2('parkridge_il.csv')
 # write_preprocess(city_inv, city_filename = 'northmiamibeach_fl.csv')
 
 # === LOMBARD, IL =================
-city_inv <- read.csv(here('TreeDatabase/lombard_il.csv')) 
+# city_inv <- read.csv(here('TreeDatabase/lombard_il.csv')) 
+# 
+# city_inv <- filter(city_inv, !grepl(invalid_spp, Scientific_Name)) %>% 
+#   filter(Diameter > 0)
+# 
+# write_preprocess(city_inv, city_filename = 'lombard_il.csv')
 
-city_inv <- filter(city_inv, !grepl(invalid_spp, Scientific_Name)) %>% 
-  filter(Diameter > 0)
+# === OAK PARK, IL ================
+city_inv <- read.csv(here('TreeDatabase/oakpark_il.csv')) 
 
-write_preprocess(city_inv, city_filename = 'lombard_il.csv')
+city_inv <- filter(city_inv, !grepl(invalid_spp, SPP_LATIN), ignore.case = TRUE) %>% 
+  filter(DBH > 0)
 
-# ===
+write_preprocess(city_inv, city_filename = 'oakpark_il.csv')
+
+# === BERWYN, IL ==================
+city_inv <- read.csv(here('TreeDatabase/berwyn_il.csv'))
+
+city_inv <- filter(city_inv, !grepl(invalid_spp, LATIN_NAME), ignore.case = TRUE) %>% 
+  filter(LATIN_NAME != 'STUMP') %>% 
+  filter(DBH > 0) %>% 
+  mutate(SPP_COM_rep = gsub('\\-', ', ', COMMON_NAM))
+
+# === WINTER HAVEN, FL ============
+city_inv <- read.csv(here('TreeDatabase/winterhaven_fl.csv'))
+
+city_inv <- filter(city_inv, !grepl(invalid_spp, LatinName), ignore.case = TRUE) %>% 
+  filter(DBH > 0) %>% 
+  filter(Status != 'Removed') %>% 
+  filter(!is.na(Latitude))
+
+write_preprocess(city_inv, city_filename = 'winterhaven_fl.csv')
+
+# === HOLLAND, MI =================
+city_inv <- read.csv(here('TreeDatabase/holland_mi.csv'))
+
+city_inv <- filter(city_inv, !grepl(invalid_spp, commonname, 
+                                    ignore.case = TRUE)) %>% 
+  filter(diameter > 0) %>% 
+  mutate(SPP_BOT_rep = paste(genus, species))
+
+write_preprocess(city_inv, city_filename = 'holland_mi.csv')
+
+# === CHATTANOOGA, TN =============
+city_inv <- arcgis_clean('chattanooga_tn.csv', 
+                         spp_col = "Botanical", dbh_col = "diameter", 
+                         export = FALSE) 
+
+city_inv <- filter(city_inv, y > 34)
+write_preprocess(city_inv, 'chattanooga_tn.csv')
+
+# === GURNEE, IL ==================
+city_inv <- arcgis_clean('gurnee_il.csv', 
+                         spp_col = "Species", dbh_col = "DBH_Value")
+city_inv <- filter(city_inv, str_length(Removal_Dte) == 0)
+write_preprocess(city_inv, 'gurnee_il.csv')
+
+# === GAITHERSBURG, MD ============
+city_inv <- arcgis_clean('gaithersburg_md.csv', 
+                         spp_col = "Botanical_Name", dbh_col = "DBH")
+city_inv <- filter(city_inv, Condition != 'Removed')
+write_preprocess(city_inv, 'gaithersburg_md.csv')
+
+# === ARLINGTON, MA ===============
+city_inv <- arcgis_clean('arlington_ma.csv', 
+                         spp_col = "CommonName", dbh_col = "DBH") 
+city_inv <- filter(city_inv, CommonName != '') %>% 
+  filter(!grepl('Stump', SpaceStatus)) %>% 
+  mutate(SPP_BOT_rep = paste(Genus, Species))
+
+write_preprocess(city_inv, 'arlington_ma.csv')
+
+# === MARYSVILLE, OH ==============
+city_inv <- arcgis_clean('marysville_oh.csv', 
+                         spp_col = "common_name", dbh_col = "dbh_class")
+city_inv <- filter(city_inv, status == 'active') %>% 
+  mutate(SPP_BOT_rep = paste(latin_genus, latin_specific_epithet)) %>% 
+  filter(str_length(date_removed) == 0)
+
+write_preprocess(city_inv, 'marysville_oh.csv')
+
+# === STATE KENTUCKY ==============
+city_inv <- arcgis_clean('state_ky.csv', 
+                         spp_col = "Species", dbh_col = "DBH__in_")
+city_inv <- filter(city_inv, grepl('existing', Status)) %>% 
+  filter(Species != '') %>% 
+  separate(col = "Species", 
+           into = c("SPP_BOT_rep", "SPP_COM_rep"), 
+           sep = ' - ', 
+           remove = FALSE)
+
+write_preprocess(city_inv, 'state_ky.csv')
+
+# === NORTHAMPTON, MA =============
+city_inv <- tkpr_simple2('northampton_ma.csv', export = TRUE)
+
+# === MILLBURN, NJ ================
+city_inv <- tkpr_simple2('millburn_nj.csv', export = TRUE)
+
+# === TRENTON, MI =================
+city_inv <- tkpr_simple2('trenton_mi.csv', export = TRUE)
+
+# === HARRISBURG, PA ==============
+city_inv <- arcgis_clean('harrisburg_pa.csv', 
+                         spp_col = "Species", dbh_col = "DBH") 
+city_inv <- filter(city_inv, F2018_Tree_Conditions != 'Removed') %>% 
+  filter(!grepl("PLANTNEW", Species))
+
+write_preprocess(city_inv, 'harrisburg_pa.csv')
+
+# === POUGHKEEPSIE, NY ============
+city_inv <- arcgis_clean('poughkeepsie_ny.csv', 
+                         spp_col = "BOTANICAL", dbh_col = "EXACT_DBH", 
+                         export = TRUE)
+
+# === BELMONT, MA =================
+city_inv <- tkpr_simple2('belmont_ma.csv', export = TRUE)
+
+# === SHREWSBURY, MA ==============
+city_inv <- tkpr_simple2('shrewsbury_ma.csv', export = TRUE)
+
+# === FERNDALE, MI ================
+city_inv <- tkpr_simple2('ferndale_mi.csv', export = TRUE)
+
+# === WELLESLEY, MA =========
+city_inv <- arcgis_clean('wellesley_ma.csv', 
+                         spp_col = "ScientificName", dbh_col = "DBH")
+city_inv <- filter(city_inv, !(ScientificName == '' & CommonName == '')) 
+
+write_preprocess(city_inv, 'wellesley_ma.csv')
+
+# === KENT, OH ==============
+city_inv <- tkpr_simple2('kent_oh.csv')
+city_inv <- city_inv %>% 
+  mutate(SPP_COM_rep = ifelse(SPP_COM_rep == 'Pacific Sunset', 
+                              'Pacific Sunset Maple', 
+                              SPP_COM_rep), 
+         SPP_BOT_rep = ifelse(SPP_COM_rep == 'Pacific Sunset Maple', 
+                              'Acer truncatum x A. platanoides', 
+                              SPP_BOT_rep))
+
+write_preprocess(city_inv, 'kent_oh.csv')
+
+# === DANVILLE, IL ================
+city_inv <- arcgis_clean('danville_il.csv', 
+                         spp_col = "TreeCommonName", dbh_col = "DiameterBreastHeight1")
+city_inv <- filter(city_inv, TreeCommonName != '')
+
+write_preprocess(city_inv, 'danville_il.csv')
+
+# === BEXLEY, OH ==================
+city_inv <- arcgis_clean('bexley_oh.csv', 
+                         spp_col = "Botanical_Name", dbh_col = "Size") 
+city_inv <- filter(city_inv, !(Botanical_Name == '' & Common_Name == ''))
+
+write_preprocess(city_inv, 'bexley_oh.csv')
+
+# === ANN ARBOR, MI ===============
+city_inv <- arcgis_clean('annarbor_mi.csv', 
+                         spp_col = "BOTANICAL", dbh_col = "DBH")
+city_inv <- filter(city_inv, !((COMMONGENU == '' & COMMONNAME == '' & 
+                              BOTANICALG == '' &  BOTANICAL == '') | 
+                                grepl('unplantable', BOTANICAL) | 
+                                (COMMONGENU == 'Vacant' & BOTANICALG == 'Vacant') | 
+                                DBH == 'N/A'))
+
+write_preprocess(city_inv, city_filename = 'annarbor_mi.csv')
+
+# === CAMBRIDGE, MA ===============
+city_inv <- arcgis_clean('cambridge_ma.csv', 
+                         spp_col = "ScientificName", dbh_col = "diameter")
+city_inv <- filter(city_inv, RemovalDate == '') %>% 
+  filter(!SiteType %in% c('Planting Site', 'Stump')) %>% 
+  filter(!(ScientificName == '' & CommonName == ''))
+
+write_preprocess(city_inv, city_filename = 'cambridge_ma.csv')
+
+# === COLUMBUS, OH ================
+city_inv <- arcgis_clean('columbus_oh.csv', 
+                         spp_col = "SPP_COM_rep", dbh_col = "DIAM_BREAST_HEIGHT")
+
+city_inv <- mutate(city_inv, 
+                   COND_rep = case_when(CONDITION1 == 0 ~ 'Dead', 
+                                        CONDITION1 == 1 ~ 'Poor', 
+                                        CONDITION1 == 2 ~ 'Fair', 
+                                        CONDITION1 == 3 ~ 'Good', 
+                                        CONDITION1 == 4 ~ 'Excellent')) %>% 
+  filter(!(SPP_COM_rep == '' | DIAM_BREAST_HEIGHT >= 500)) 
+
+write_preprocess(city_inv, city_filename = 'columbus_oh.csv')
+
+# === TALLAHASSEE, FL =============
+city_inv <- arcgis_clean('tallahassee_fl.csv', 
+                         spp_col = "BOTANICAL", dbh_col = "EXACT_DBH")
+
+write_preprocess(city_inv, city_filename = 'tallahassee_fl.csv')
 
 # === DIAGNOSTICS =================
-length(unique(city_inv$Tree_ID))
+length(unique(city_inv$OBJECTID))
 
 unique(city_inv$ConditionID)
 
 city_inv <- filter(city_inv, SPP_BOT_rep == 'Tilia americana')
-city_inv[2051,] %>% View()
+city_inv[415,] %>% View()
 
 na_count <- sapply(city_inv, function(y) sum(length(which(is.na(y))))) %>% 
   data.frame()
 
 city_inv <- read.csv(here('qualitycontrol/R3LIST_260202.csv')) 
 
-city_invsort <- sort(city_inv, )
+city_inv %>% View()
