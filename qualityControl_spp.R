@@ -20,12 +20,12 @@
 ## ---------------------------
 
 # install packages
-# install.packages('fuzzyjoin')
+# install.packages('zoomerjoin')
 
 # load packages
 library('devtools')
 library('here')
-library('fuzzyjoin')
+library('zoomerjoin')
 library('treemendous')
 library('data.table')
 library('tidyverse')
@@ -46,6 +46,12 @@ spp_crosswalk <- usda_plants %>%
 
 colnames(spp_crosswalk) <- lapply(colnames(spp_crosswalk), 
                                   FUN = colname_format)
+
+spp_crosswalk <- spp_crosswalk %>% 
+  mutate(str_bot_len = str_length(ScientificName)) %>% 
+  .[with(., order(SPP_BOT, str_bot_len)), ] 
+
+spp_crosswalk <- spp_crosswalk[!duplicated(spp_crosswalk$SPP_BOT), ]
 # =============
 # (1) SPPBOT MATCHING
 #
@@ -139,13 +145,27 @@ spp_diag2 <- function(spp_list){
 #   Common Name -> Botanical Name
 # =============
 
+sppcom_prep <- function(sppcom_list){
+  SPPCOM_list <- data.frame(SPP_COM_ORIG = sppcom_list) %>% 
+    mutate(SPPCOM_clean = SPP_COM_ORIG, 
+           SPPCOM_clean = gsub("[\u2018\u2019\u201A\u201B\u2032\u2035]", "'", SPPCOM_clean)) %>% 
+    mutate(COM_CULTIVAR = str_extract(SPPCOM_clean, "(?<=\\').*(?=\\')")) %>% 
+    mutate(SPPCOM_clean = gsub("\\s*\\'[^']+\\'", '', SPPCOM_clean), 
+           SPPCOM_clean = gsub("[^[:alpha:], ']", '', SPPCOM_clean), 
+           SPPCOM_clean = str_to_lower(trimws(str_squish(SPPCOM_clean))), 
+           SPPCOM_clean = ifelse(str_sub(SPPCOM_clean, start = -1, end = -1) == ',', 
+                                 str_sub(SPPCOM_clean, start = 1, end = -2), 
+                                 SPPCOM_clean)) 
+  
+  return(unique(select(SPPCOM_list, SPPCOM_clean)))
+}
 
 nameFLFormatting <- function(spp_namedf, spp_form){
   # one comma
   spp_namedf <- spp_namedf %>% 
-    mutate(spp_form = str_count(SPP_COM, ','), 
-           form1 = str_squish(sub('^(.*), (.*)$', '\\2 \\1', SPP_COM)), 
-           form2 = str_squish(sub('^(.*), (.*), (.*)$', '\\2 \\1, \\3', SPP_COM))) %>% 
+    mutate(spp_form = str_count(SPPCOM_clean, ','), 
+           form1 = str_squish(sub('^(.*), (.*)$', '\\2 \\1', SPPCOM_clean)), 
+           form2 = str_squish(sub('^(.*), (.*), (.*)$', '\\2 \\1, \\3', SPPCOM_clean))) %>% 
     rowwise() %>% 
     mutate(CommonName = ifelse(spp_form == 1, 
                                   form1, form2)) %>% 
@@ -155,15 +175,15 @@ nameFLFormatting <- function(spp_namedf, spp_form){
                          too_few = 'align_start', 
                          too_many = 'drop')
   
-  return(select(spp_namedf, c(SPP_COM, CommonName, Variety)))
+  return(select(spp_namedf, c(SPPCOM_clean, CommonName, Variety)))
 }
 
 spp_com <- function(spp_list){
-  spp_list_clean <- nameFLFormatting(spp_list)
+  spp_list_clean <- nameFLFormatting(spp_list) 
   spp_com_matched <- stringdist_join(x = spp_list_clean, 
                                      y = select(spp_crosswalk, c(CommonName, SPP_BOT)),  
                   by = c('CommonName' = 'CommonName'), 
-                  max_dist = 0.1, 
+                  max_dist = 0.15, 
                   method = 'jw', 
                   mode = 'left', 
                   ignore_case = TRUE, 
@@ -173,6 +193,24 @@ spp_com <- function(spp_list){
     slice(which.min(distance)) %>% 
     return()
 }
+
+sppcom_zoom <- function(sppcom_list){
+  spp_list <- sppcom_prep(sppcom_list)
+  spp_list_clean <- nameFLFormatting(spp_list) %>% 
+    drop_na(CommonName) 
+  print(nrow(spp_list_clean))
+  spp_com_matched <- jaccard_left_join(a = spp_list_clean, 
+                                       b = drop_na(select(spp_crosswalk, c(CommonName, SPP_BOT)), CommonName), 
+                                       by = c("CommonName" = "CommonName"), 
+                                       similarity_column = "J") 
+  
+  multmatch <- spp_com_matched[duplicated(spp_com_matched$CommonName.x), ]$CommonName.x %>% 
+    unique()
+  
+  return(list(zoom_match = filter(spp_com_matched, !CommonName.x %in% multmatch), 
+              zoom_fuzzy = filter(spp_com_matched, CommonName.x %in% multmatch)))
+}
+
 
 # =============
 # (3) SPPCODE MATCHING
@@ -200,7 +238,7 @@ spp_code <- function(spp_list){
   sppcode_step1 <- filter(sppcode_step1, !is.na(SPP_BOT))
   sppcode_cross <- rbind(select(sppcode_step1, all_of(c("SPP_CODE", "SPP_BOT"))), 
                          select(sppcode_step2, all_of(c("SPP_CODE", "SPP_BOT")))) %>%
-    rename(SPPCODE_edit = 'SPP_BOT')
+    rename(SPPCODE_cross = 'SPP_BOT')
   
   return(sppcode_cross)
 }
@@ -219,4 +257,14 @@ R2spp_crosswalk <- read.csv(here('data/sppcom_cross0121.csv')) %>%
   rename(SPPMATCH_EDIT = "SPP_EDIT", 
          CULMATCH_EDIT = "CUL_EDIT") %>% 
   .[, !names(.) %in% c("ID")]
+
+# =============
+# (5) R3 UNMATCHED
+
+R3spp_crosswalk <- read.csv(here('data/files0209/R3LIST_isnafinal.csv'))
+R3spp_crosswalk <- R3spp_crosswalk %>% 
+  mutate(SPPBOT_edit = ifelse(grepl('Unidentifi', SPP_COM), 'REMOVE', NA), 
+         SPPBOT_edit = ifelse(grepl('^\\(', SPP_BOT), 
+                              str_extract(SPP_BOT, '(?<=\\().*(?=\\))'), 
+                              SPPBOT_edit))
 

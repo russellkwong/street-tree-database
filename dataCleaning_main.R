@@ -155,22 +155,10 @@ pull_inv <- function(filename){
 R1LIST <- lapply(X = filelist, FUN = pull_inv) %>% 
   do.call(bind_rows, .) 
 
+
 SPPBOT_list <- data.frame(SPP_BOT = unique(R1LIST$SPP_BOT))
-SPPCOM_list <- data.frame(SPP_COM = unique(R1LIST$SPP_COM))
 
-SPPCOM_list2 <- SPPCOM_list %>% 
-  rename(SPP_COM_ORIG = "SPP_COM") %>% 
-  mutate(SPP_COM = SPP_COM_ORIG, 
-         SPP_COM = gsub("[\u2018\u2019\u201A\u201B\u2032\u2035]", "'", SPP_COM)) %>% 
-  mutate(COM_CULTIVAR = str_extract(SPP_COM, "(?<=\\').*(?=\\')")) %>% 
-  mutate(SPP_COM = gsub("\\s*\\'[^']+\\'", '', SPP_COM), 
-         SPP_COM = gsub("[^[:alpha:], ']", '', SPP_COM), 
-         SPP_COM = str_to_lower(trimws(str_squish(SPP_COM))), 
-         SPP_COM = ifelse(str_sub(SPP_COM, start = -1, end = -1) == ',', 
-                          str_sub(SPP_COM, start = 1, end = -2), 
-                          SPP_COM)) 
 
-SPPOTHER_list <- data.frame(SPP_OTHER = unique(R1LIST$SPP_OTHER))
 SPPCODE_list <- data.frame(SPP_CODE = unique(R1LIST$SPP_CODE))
 
 # filtering matching from SPP_BOT treemendous
@@ -178,20 +166,33 @@ SPPBOT_tmd <- spp_diag2(SPPBOT_list)
 
 SPPBOT_exact <- filter(SPPBOT_tmd, matched == TRUE) %>% 
   mutate(Matched.Species = gsub('^spec$', 'spp.', Matched.Species), 
-         Matched.Species = gsub('^speciosa$', 'spp.', Matched.Species), 
-         SPP_edit = paste(Matched.Genus, Matched.Species)) %>% 
-  select(c("BOT_ORIG", "SPP_edit")) 
+         SPPBOT_tmd = paste(Matched.Genus, Matched.Species)) %>% 
+  select(c("BOT_ORIG", "SPPBOT_tmd")) 
 
 SPPBOT_fuzzy <- filter(SPPBOT_tmd, matched == FALSE | is.na(matched))
 
 # filtering matching from SPP_COM 
-SPPCOM_matching <- spp_com(unique(select(SPPCOM_list2, SPP_COM)))
+# DEPR SPPCOM_matching <- spp_com(unique(select(SPPCOM_list2, SPP_COM)))
 
-SPPCOM_exact <- filter(SPPCOM_matching, distance == 0) %>% 
-  rename(SPPCOM_edit = "SPP_BOT") %>% 
-  select("SPP_COM", "SPPCOM_edit")
+# upgrade sppcom with zoom
+# DEPR SPPCOM_matching <- spp_com_zoom(unique(select(SPPCOM_list2, SPPCOM_clean)))
+SPPCOM_matching <- sppcom_zoom(unique(R1LIST$SPP_COM))
 
-SPPCOM_fuzzy <- filter(SPPCOM_matching, distance > 0)
+# DEPR --
+# SPPCOM_exact <- filter(SPPCOM_matching, distance == 0) %>% 
+#   rename(SPPCOM_edit = "SPP_BOT") %>% 
+#   select("SPP_COM", "SPPCOM_edit")
+
+# upgrade sppcom matching
+SPPCOM_cross <- SPPCOM_matching$zoom_match %>% 
+  rename(SPPCOM_cross = "SPP_BOT") %>% 
+  select("SPPCOM_clean", "SPPCOM_cross") 
+SPPCOM_cross <- merge(SPPCOM_list2, SPPCOM_cross, 
+                      by.x = "SPPCOM_clean", by.y = "SPPCOM_clean", 
+                      all.x = TRUE) %>% 
+  select(-c("SPPCOM_clean"))
+
+SPPCOM_fuzzy <- SPPCOM_matching$zoom_fuzzy
 # export and manually match names with SPPCOM_fuzzy
 
 # matching from SPP_CODE
@@ -202,8 +203,8 @@ sppcode_cross <- spp_code(drop_na(data.frame("SPP_CODE" = unique(R1LIST$SPP_CODE
 R2LIST <- merge(R1LIST, SPPBOT_exact, 
                 by.x = "SPP_BOT", by.y = "BOT_ORIG", 
                 all.x = TRUE) 
-R2LIST <- merge(R2LIST, SPPCOM_exact, 
-                by.x = "SPP_COM", by.y = "SPP_COM", 
+R2LIST <- merge(R2LIST, SPPCOM_cross, 
+                by.x = "SPP_COM", by.y = "SPP_COM_ORIG", 
                 all.x = TRUE) 
 R2LIST <- merge(R2LIST, sppcode_cross, 
                 by = "SPP_CODE", 
@@ -214,7 +215,7 @@ rm(SPPBOT_exact, SPPBOT_fuzzy, SPPCOM_exact, SPPCOM_fuzzy)
 R2LIST_nomatch <- R2LIST %>% 
   filter(is.na(SPP_edit) & is.na(SPPCOM_edit) & is.na(SPPCODE_edit)) %>% 
   select(c("SPP_COM", "SPP_BOT", "SPP_OTHER", "SPP_CODE", "GENUS", "SPECIES", "CULTIVAR", 
-           "SPP_edit", "SPPCOM_edit", "SPPCODE_edit")) %>% 
+           "SPPBOT_tmd", "SPPCOM_cross", "SPPCODE_cross")) %>% 
   unique()
 
 write.csv(R2LIST_nomatch, here('unmatch_sp260202.csv'))
