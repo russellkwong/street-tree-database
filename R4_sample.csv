@@ -1,4 +1,4 @@
-SPECIES,SPECIES_COM,gbif_usageKey,usda_fiadb_SPCD,CULTIVAR,DBH,LON,LAT,city_filename,CITY,STATE,FIPS
+SPECIES,SPECIES_COM,gbif_usageKey,usda_fiadb_SPCD,CULTIVAR,DBH_cm,LON,LAT,city_filename,CITY,STATE,FIPS
 Abies balsamea,balsam fir,2685383,12,NA,40.64,-72.0101453354714,41.3425594754325,groton_ct.csv,Groton,Connecticut,0934250
 Abies balsamea,balsam fir,2685383,12,NA,33.02,-72.0100051031239,41.342311512133,groton_ct.csv,Groton,Connecticut,0934250
 Abies balsamea,balsam fir,2685383,12,NA,38.1,-72.0099643610556,41.3422644983062,groton_ct.csv,Groton,Connecticut,0934250

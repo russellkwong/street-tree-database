@@ -1,0 +1,13 @@
+﻿Column name (attribute),Descriptive name,Attribute description,Data type
+SPECIES,Botanical Name,Botanical name of tree,Character
+SPECIES_COM,Common Name,Common name of tree,Character
+gbif_usageKey,GBIF Usage Key,Primary ID number used in GBIF backbone taxonomy,
+usda_fiadb_SPCD,USDA FIADB SPCD,An FIA numeric code identifying the tree species,
+CULTIVAR,Cultivar,Variety or cultivar of tree,Character
+DBH_cm,Diameter at breast height,Diameter of tree measured at 1.37m above the ground (measured in cm),Numeric
+LON,Longitude,Longitude of tree (WGS 84),Numeric
+LAT,Latitude,Latitude of tree (WGS 84),Numeric
+city_filename,City inventory filename,Filename of the individual city inventory,Character
+CITY,City name,Name of municipality in which tree is inventoried,Character
+STATE,State name,Name of state in which tree is inventoried,Character
+FIPS,FIPS Code,Identification code of state and municipality,Character
