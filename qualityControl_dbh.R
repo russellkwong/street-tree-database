@@ -167,7 +167,8 @@ pull_dbh2 <- function(filename){
     if ('dbhExact' %in% names(dbhCols)){ 
       dbhCols <- dbhCols %>% 
         mutate(dbhExactOrig = dbhExact, 
-               dbhClean = ifelse(is.na(dbhExact), dbhClassCalc, dbhExact), 
+               dbhClean = ifelse(is.na(dbhExact) | dbhExact <= 0, dbhClassCalc, dbhExact), 
+#                dbhClean = gsub('(\\w+).*', '\\1', dbhClean), 
                dbhClean = as.numeric(gsub('[^0-9.-]', '', dbhClean)))
       joinxCols <- append(joinxCols, 'DBH_EXACT')
       joinyCols <- append(joinyCols, 'dbhExactOrig')
@@ -179,7 +180,9 @@ pull_dbh2 <- function(filename){
     dbhCols <- dbhCols %>% 
       mutate(dbhExactOrig = dbhExact, 
              # dbhClean = as.numeric(gsub('\\"', '', dbhExact)), 
-             dbhClean = as.numeric(gsub('[^0-9.-]', '', dbhExact)))
+             dbhClean = gsub('[[:alpha:]]', '', dbhExact),
+             dbhClean = gsub('(\\w+).*', '\\1', dbhClean), 
+             dbhClean = as.numeric(gsub('[^0-9.-]', '', dbhClean)))
     joinxCols <- append(joinxCols, 'DBH_EXACT')
     joinyCols <- append(joinyCols, 'dbhExactOrig')
   }
@@ -360,6 +363,19 @@ hgt_classes <- function(df){
   
   return(df_diag)
 }
+
+# DBH DIAGNOSTICS ==============================
+# R2LIST %>% mutate(inval_dbh = case_when(
+#     dbh_flag == 1 & !(is.na(DBH_EXACT) & is.na(DBH_CLASS)) ~ 1, .default = 0), 
+#     no_dbh = case_when(is.na(DBH_EXACT) & is.na(DBH_CLASS) ~ 1, .default = 0), 
+#     zero_dbh = case_when(dbhClean <= 0 ~ 1, .default = 0)
+#   ) %>% 
+#   group_by(CITY) %>% 
+#   summarise(n = n(),
+#             dbh_flag = sum(dbh_flag), 
+#             invald_dbh = sum(inval_dbh), 
+#             zero_dbh = sum(zero_dbh), 
+#             no_dbh = sum(no_dbh)) %>% View()
 
 
 # RUNNING EXAMPLES =============================
